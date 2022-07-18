@@ -1,23 +1,36 @@
-console.log("you sunck my battleship!")
+// function createBoard(grid, squares) {
+//     for (let i = 0; i < width*width; i++) {
+//       atually make a class with the board in it
+//     }
+//   }
+//
+//
 
+console.log("you sunk my BATTLESHIP!")
 
+class Board {
 
-//set grid size variables
+  constructor(rows, cols, numShip) {
 
-let p1gridSize = prompt("select grid size")//bigger grid = higher difficulty
-let p2gridSize =prompt("select grid size")
-//write an array of an arrays
-
-const createGrid = (size) =>
-{
-  let grid = []
-  for (let i = 0; i < size; i++){//change to for of loops?
-    grid[i] = []
-    for (let j=0; j < size; j++){
-      grid[i][j] = "-"
+    this.ships = []
+    this.cells = []
+    this.numShip = numShip
+    this.shipSPaces = 0
+    this.rows = browserthis.cols = colors
+    for (let row = 0; row < rows; row ++) {
+      this.cells[row][col] = new Space(row,col)
     }
   }
-  return grid
 }
-console.log(grid)
-//focus on MVP
+
+class Space {
+
+  constructor(row, col) {
+
+    this.row = row
+    this.col = col
+    this.hit = false
+    this.hasShip = false
+  }
+}
+// console.log()
