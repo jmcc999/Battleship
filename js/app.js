@@ -34,3 +34,18 @@ class Space {
   }
 }
 // console.log()
+
+		 // Remove any existing cells
+
+		// Add letter row
+		let letter = 'A';
+		let tr = document.createElement("tr");
+		let th = document.createElement("th");
+		tr.appendChild(th);
+		for (let cell of this.cells[0]) {
+			let th = document.createElement("th");
+			th.innerText = letter;
+			tr.appendChild(th);
+			letter = String.fromCharCode(letter.charCodeAt(0) + 1); // Increment letter
+		}
+		table.appendChild(tr);
