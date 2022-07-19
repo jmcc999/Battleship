@@ -15,7 +15,7 @@ class Board {
     this.ships = []
     this.cells = []
     this.numShip = numShip
-    this.shipSPaces = 0
+    this.shipSpaces = 0
     this.rows = rows
     this.cols = cols
     for (let row = 0; row < rows; row ++) {
@@ -90,3 +90,4 @@ class Space {
 console.log(Board)
 let b1 = new Board()
 b1.placeShip()
+b1.win()
