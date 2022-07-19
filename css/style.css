@@ -5,5 +5,12 @@ body {
 	background-attachment: fixed;
 	background-position: center;
 	background-size: cover;
-	background-color: #4577ac; /* fallback before image loads */
+	background-color: #4577ac; /*fallback before image loads */
+}
+
+.grid-display {
+	/*	Water background, waves
+	*/
+	border-collapse: collapse;
+	background-image: linear-gradient(22deg, #1aa3ff 1%, #006bb3 20%, #1aa3ff 50%, #006bb3 70%, #1aa3ff 100%);
 }
