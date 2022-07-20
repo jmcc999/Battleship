@@ -10,63 +10,26 @@ console.log("you sunk my BATTLESHIP!")
 
 class Board {
 
-  constructor(rows, cols, numShip) {
+  constructor(rows, columns, numShip) {
 
     this.ships = []
     this.cells = []
     this.numShip = numShip
     this.shipSpaces = 0
     this.rows = rows
-    this.cols = cols
+    this.columns = columns
     for (let row = 0; row < rows; row ++) {
       this.cells[row] = []
-      for (let col = 0; col < cols; col++) {
-        this.cells[row][col] = new Space(row, col)
+      for (let column = 0; column < columns; column++) {
+        this.cells[row][column] = new Space(row, column)
       }
-
     }
   }
-  placeShip(length, row, col, isVertical) {
+  placeShip(length, row, column, isVertical) {
     console.log("yar")
   }
-  create(table, game, isCurrentPlayer, preventClicking) {
-		table.innerHTML = ""; // Remove any existing cells
 
-	// 	// Add letter row
-	// 	let letter = 'A';
-	// 	let tr = document.createElement("tr");
-	// 	let th = document.createElement("th");
-	// 	tr.appendChild(th);
-	// 	for (let cell of this.cells[0]) {
-	// 		let th = document.createElement("th");
-	// 		th.innerText = letter;
-	// 		tr.appendChild(th);
-	// 		letter = String.fromCharCode(letter.charCodeAt(0) + 1); // Increment letter
-	// 	}
-	// 	table.appendChild(tr)
-  //   let num = 1;
-	// 	for (let row of this.cells) {
-	// 		let tr = document.createElement("tr");
-  //
-	// 		// Add number column
-	// 		let th = document.createElement("th");
-	// 		th.innerText = num;
-	// 		tr.appendChild(th);
-	// 		num++;
-  //
-	// 		for (let cell of row) {
-	// 			let td = document.createElement("td");
-	// 			if (isCurrentPlayer && cell.hasShip) td.classList.add("ship");
-	// 			if (cell.isHit && !cell.hasShip) td.classList.add("miss");
-	// 			if (cell.isHit && cell.hasShip) td.classList.add("hit");
-	// 			if (!preventClicking) {
-	// 				// Each cell has its own event listenser that listens for clicks on itself
-	// 				td.addEventListener('click', e => game.clickSpace(cell, isCurrentPlayer));
-	// 			}
-	// 			tr.appendChild(td);
-	// 		}
-	// 		table.appendChild(tr);
-		}
+
   //find winner on this board return if all shipspaces have been Hit
   win() {
     console.log("WINNER WINNER CHICKEN DINNER!")
@@ -79,15 +42,51 @@ class Board {
 // Increment letter
 class Space {
 
-  constructor(row, col) {
+  constructor(row, column) {
 
     this.row = row
-    this.col = col
+    this.column = column
     this.hit = false
     this.hasShip = false
   }
 }
-console.log(Board)
-let b1 = new Board()
-b1.placeShip()
-b1.win()
+// let b1 = new Board()
+// b1.placeShip()
+// b1.win()
+
+class Game {
+
+  constructor(rows, columns, numShip){
+    this.rows = rows
+    this.columns = columns
+    this.numShip = numShip
+    this.turn = false
+    this.setup = false
+    this.numShipsPlaced= 0
+    this.board0 = new Board(rows, columns, this.numShips)
+    this.board1 = new Board(rows, columns, this.numShips)
+
+  }
+  blankBoards() {
+		this.board0.render(document.getElementById("board0"), this, false, true);
+		this.board1.render(document.getElementById("board1"), this, false, true);
+	}
+}
+
+
+let game1 = new Game(10, 10, 10)
+game1.blankBoards()
+// console.log(board0)
+// console.log(game1)
+
+class Execute {
+  constructor() {
+    this.numShips = 1
+    this.rows = 9
+    this.columns = 9
+  }
+  initiate() {
+    document.getElementById("grid-display").style.display = "";
+    this.game = new Gameplay(this.rows, this.cols, this.numShips)
+  }
+}
