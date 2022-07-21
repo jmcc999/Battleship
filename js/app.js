@@ -6,6 +6,7 @@
 //
 //
 
+
 console.log("you sunk my BATTLESHIP!")
 
 class Board {
