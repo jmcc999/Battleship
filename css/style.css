@@ -24,11 +24,11 @@ h2 {
 }
 
 p {
-	color: grey;
+	color: black;
 }
 
 input {
-	color: grey;
+	color: black;
 }
 
 #menu, #controls {
@@ -62,7 +62,6 @@ input {
 	position: relative;
 }
 
-
 .board td.miss {
 	/*Miss shot, yellow*/
 	background-image: radial-gradient(#a5a50d 28%, #f0f042 32%, #f0f042 58%, transparent 62%);
@@ -72,12 +71,14 @@ input {
 /*Ship cell, grey*/
 	background: radial-gradient(rgba(128,128,128,0.7) 28%, #7b9095 32%, #7b9095 100%);
 }
+
 .board td.hit {
   background-repeat: no-repeat;
 	background-size: auto;
 	/*Shell hit ship, ship is hidden, red*/
 	background-image: radial-gradient(#951d1d 28%, #c02626 32%, #c02626 58%, transparent 62%);
 }
+
 .board td.ship.hit {
 	/*Shell hit ship cell, red & grey*/
 	background-image: radial-gradient(#951d1d 28%, #c02626 32%, #c02626 58%, #7b9095 62%);
@@ -92,7 +93,6 @@ input {
 }
 
 .modal {
-
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -103,12 +103,12 @@ input {
 	overflow: auto;
 	background-color: grey;
 	background-color: rgba(0,0,0,0.4);
-}
+ }
 
-	.modal-content {
-		background-color: grey;
-		margin: 15% auto;
-		padding: 20px;
-		border: 1px solid #888;
-		width: 35%;
-	}
+.modal-content {
+	background-color: grey;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 35%;
+ }
