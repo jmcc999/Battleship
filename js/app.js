@@ -11,7 +11,6 @@ class Board {
 //  ships Array of ships in the current board
 // 	cells 2D array of cell containing space objects
 // shipSpaces of spaces/cells that are occupied by a ship
-
 		this.ships = []
 		this.cells = []
 		this.numShips = numShip
@@ -25,27 +24,22 @@ class Board {
 			}
 		}
 	}
-
-
 //   current state of the board to an HTML table element, optionally showing ships and allowing clicking
 //  The table to render the board to
 //  to use the clickSpace method of
 // 	for whether all ship locations should be visible
 // to restrict a player to click again
-//
 	render(table, game, isCurrentPlayer, preventClicking) {
 		table.innerHTML = "" // Remove any existing cells
-// add letter row later
+// add letter row
 		let num = 1
 		for (let row of this.cells) {
 			let tr = document.createElement("tr")
-		//
 			// Add number column
 			let th = document.createElement("th")
 			th.innerText = num
 			tr.appendChild(th)
 			num++
-
 			for (let cell of row) {
 				let td = document.createElement("td")
 				if (isCurrentPlayer && cell.hasShip) td.classList.add("ship")
@@ -60,9 +54,7 @@ class Board {
 			table.appendChild(tr)
 		}
 	}
-
 	//  confirm coordinates are within bounds of board
-//
 // Creates a new Ship object and updates this.ships and this.spaces accordingly
 // How many spaces long the ship should be
 // The row coordinate of the top end of the ship
@@ -86,7 +78,6 @@ class Board {
 		} else {
 			return "This location would go off the edge of the board. Try again."
 		}
-
 	}
 
 	checkBoundaries(length, row, col, isVertical) {
@@ -99,16 +90,13 @@ class Board {
 		}
 		return true
 	}
-
  // Determines whether the game has been won on this board
  // If all ship spaces on this board have been sunk
 
 	checkWin() {
 		return this.shipSpaces == 0
 	}
-
 // Whether the given row, col coordinates intersect the ship
-
 	isIntersecting(coords) {
 		for (let coord of coords) {
 			if (this.cells[coord[0]][coord[1]].hasShip) return true
@@ -117,19 +105,16 @@ class Board {
 	}
 }
 
-class Executive {
+class Execute {
 //  Sets up the game with the user selected number of ships. Constructor create event listeners on the game setup menu
-
     constructor() {
 	// numShips  The number of ships each player will have
  // row The number of rows each board will have
  // 		 cols the number of columns each board will have
- //
 	// Future enhancement Allow the user to select the size of the board
 		this.rows = 9
 		this.cols = 9
-		this.numShips = 5
-
+		this.numShips = 3
 		// Setting up the event for a click to change the menu for the board
 		document.getElementById("complete").addEventListener("click", e => this.initGame())
     }
@@ -140,11 +125,11 @@ class Executive {
 		document.getElementById("controls").style.display = ""
 		document.getElementById("both_boards").style.display = ""
 		document.getElementById("switch-turn").style.display = "none"
-		this.game = new Gameplay(this.rows, this.cols, this.numShips)
+		this.game = new Game(this.rows, this.cols, this.numShips)
 	}
 }
 
-class Gameplay {
+class Game {
 
 // Manages the boards and user interaction during gameplay (ship placement and attacking)
 //  The number of rows the boards have
@@ -172,7 +157,6 @@ class Gameplay {
 			})
 		}
 
-
 		document.getElementById("switch-turn").addEventListener("click", e => {
 			if (this.isSetup) {
 
@@ -196,15 +180,11 @@ class Gameplay {
 				this.renderBoards(false)
 			}
 		})
-
 		document.getElementById("switch-now").addEventListener("click", e => this.switchTurns())
-
 		// Future enhancement: Reset the game properly so player names can be kept
 		document.getElementById("play-again").addEventListener("click", e => window.location.reload())
 	}
-
  // Sets up the next player's turn by hiding the turn switch modal and displaying their ships
-
 	switchTurns() {
 		modal.style.display = "none"
 		this.turn = !this.turn
@@ -214,7 +194,6 @@ class Gameplay {
 	}
 
  // Render the boards, hides the ships on both boards, for use during turn switching
-
 	blankBoards() {
 		this.board0.render(document.getElementById("board0"), this, false, true)
 		this.board1.render(document.getElementById("board1"), this, false, true)
@@ -222,13 +201,11 @@ class Gameplay {
 
 //  Render the boards, only showing ships on the current player's board
 // preventClicking Whether to not setup the clickSpace listener on each cell
-
 	renderBoards(preventClicking) {
 		this.board0.render(document.getElementById("board0"), this, !this.turn, preventClicking)
 		this.board1.render(document.getElementById("board1"), this, this.turn, preventClicking)
 	}
 // create the boards, showing ships on both boards, and display a victory message
-
 	gameEnd() {
 		this.msg("You win!!!")
 		this.board0.render(document.getElementById("board0"), this, true, true)
@@ -239,7 +216,6 @@ class Gameplay {
 // Handles a space being clicked on either board
 // cell The Space object that was clicked
 // isCurrentPlayer Whether the board that was clicked belongs to the player whose turn it currently is
-
 	clickSpace(cell, isCurrentPlayer) {
 		if (this.isSetup) {
 			if (!isCurrentPlayer && !cell.isHit) {
@@ -265,10 +241,8 @@ class Gameplay {
 			this.newShip(cell)
 		}
 	}
-
  // Places a new ship on the current player's board
  // The space the user clicked on, which will be the top/left end of the new ship
-
 	newShip(cell) {
 		let board = this.turn ? this.board1 : this.board0
 		let shipLength = this.numShips - this.numShipsPlaced//future add slider to change numeShips
@@ -290,25 +264,19 @@ class Gameplay {
 			}
 		}
 	}
-
 	// Display a message to the current player
 //
 	msg(message) {
 		document.getElementById("message").innerHTML = message
 	}
-
 }
-
-
 
 class Space {
 //Represents a single space on a board. Creates a Space object, defaulting to no ship and not hit
 ///
 	constructor(row, col) {
-
 // hasShip = any ship contains this space
 // isHit =this space has been attacked (regardless of if it has a ship)
-
 		this.row = row
 		this.col = col
 		this.hasShip = false
