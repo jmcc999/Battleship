@@ -1,14 +1,7 @@
-// function createBoard(grid, squares) {
-//     for (let i = 0; i < width*width; i++) {
-//       atually make a class with the board in it
-//     }
-//   }
-//
-//
 
 
-console.log("you sunk my BATTLESHIP!")
-
+console.log("BATTLESHIP!")
+//create classes board, ships, spaces, game, initiate
 class Board {
 
   constructor(rows, columns, numShip) {
@@ -25,6 +18,9 @@ class Board {
         this.cells[row][column] = new Space(row, column)
       }
     }
+  }
+  create(table, game, currentPlayer, no preventClicking) {
+    table.innerHTML = ""
   }
   placeShip(length, row, column, isVertical) {
     console.log("yar")
